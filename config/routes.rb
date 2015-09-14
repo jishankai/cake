@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
-  devise_for :admin_users, ActiveAdmin::Devise.config
-  ActiveAdmin.routes(self)
-
   get 'site/index', :to => 'site#index'
+  get 'site/pay', :to => 'site#pay'
+  get 'site/chart', :to => 'site#chart'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

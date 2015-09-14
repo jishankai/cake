@@ -4,4 +4,12 @@ class SiteController < ApplicationController
   def index
     @products = Product.all
   end
+
+  def pay
+    @products = Product.all
+  end
+
+  def chart
+    @products = Product.all
+  end
 end

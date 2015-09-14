@@ -1,22 +1,62 @@
 - @products.each do |product|
   .row
-    = image_tag(product.thumb)
+    center
+      #carousel-generic.carousel.slide[data-ride="carousel"]
+        ol.carousel-indicators
+          li.active[data-target="#carousel-generic" data-slide-to="0"]
+          li[data-target="#carousel-generic" data-slide-to="1"]
+          li[data-target="#carousel-generic" data-slide-to="2"]
+        .carousel-inner[role="listbox"]
+          .item.active
+            = image_tag(product.thumb)
+            .carousel-caption
+              |  ... 
+          .item
+            = image_tag(product.thumb)
+            .carousel-caption
+              |  ... 
+        a.left.carousel-control[href="#carousel-generic" role="button" data-slide="prev"]
+          span.glyphicon.glyphicon-chevron-left[aria-hidden="true"]
+          span.sr-only
+            | Previous
+        a.right.carousel-control[href="#carousel-generic" role="button" data-slide="next"]
+          span.glyphicon.glyphicon-chevron-right[aria-hidden="true"]
+          span.sr-only
+            | Next
   .row
     .col-xs-4
       .row
         = product.name
       .row
-        = product.price
-    .col-xs-4
-    .col-xs-4
-      数量
+        font color='red'
+          = product.price
+    .col-xs-7
+    .col-xs-1
+        select
+          option value=0
+            '0
+          option value=1
+            '1
+          option value=2
+            '2
+          option value=3
+            '3
+          option value=4
+            '4
+          option value=5
+            '5
   .row
+    | 口味：
     = product.taste
   .row
+    | 工艺：
     = product.crafts
   .row
+    | 功效：
     = product.efficacy
   .row
+    | 贴士：
     = product.tips
   .row
+    | 余量：
     = product.inventory

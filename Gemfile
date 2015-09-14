@@ -27,7 +27,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'mysql2'
 
 # Admin
-gem 'activeadmin', '~> 1.0.0.pre1'
+#gem 'activeadmin', '~> 1.0.0.pre1'
 gem 'devise'
 gem 'cancan' # or cancancan
 gem 'draper'
