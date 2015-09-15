@@ -1,15 +1,13 @@
 class SiteController < ApplicationController
-  layout "index", :only => :index
-
   def index
     @products = Product.all
   end
 
-  def pay
+  def submit
     @products = Product.all
   end
 
-  def chart
+  def calculate
     @products = Product.all
   end
 end

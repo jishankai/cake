@@ -1,0 +1,45 @@
+.container#main-container
+  .navbar-fixed-top
+    center
+      .btn-info
+        '收货信息
+  br
+  br
+  form role='form'
+    .row
+      .col-xs-4
+        .form-group 
+          input.form-control#name[name='name'  placeholder='姓名' type='text']
+      .col-xs-8
+        .form-group 
+          input.form-control#mobile[name='mobile'  placeholder='手机' type='text']
+    .row
+      .col-xs-12
+        .form-group 
+          textarea.form-control#address[name='address'  placeholder='收货地址']
+    .row
+      .col-xs-12
+        .form-group
+          .radio-inline
+            label
+              input.form-control#address_type[name='address_type' value='home' type='radio']
+              | 家
+          .radio-inline
+            label
+              input.form-control#address_type[name='address_type' value='school' type='radio']
+              | 学校
+          .radio-inline
+            label
+              input.form-control#address_type[name='address_type' value='company' type='radio']
+              | 公司
+    .row
+      .col-xs-12
+        .form-group 
+          textarea.form-control#remark[name='remark'  placeholder='留言']
+    .row
+      .col-xs-12
+        span.help-block
+          | 以上所有信息为必填项
+  center
+    .btn-success
+      '微信支付

@@ -1,62 +1,164 @@
-- @products.each do |product|
-  .row
+.container#main-container
+  .navbar-fixed-top[style='background:white']
     center
-      #carousel-generic.carousel.slide[data-ride="carousel"]
-        ol.carousel-indicators
-          li.active[data-target="#carousel-generic" data-slide-to="0"]
-          li[data-target="#carousel-generic" data-slide-to="1"]
-          li[data-target="#carousel-generic" data-slide-to="2"]
-        .carousel-inner[role="listbox"]
-          .item.active
-            = image_tag(product.thumb)
-            .carousel-caption
-              |  ... 
-          .item
-            = image_tag(product.thumb)
-            .carousel-caption
-              |  ... 
-        a.left.carousel-control[href="#carousel-generic" role="button" data-slide="prev"]
-          span.glyphicon.glyphicon-chevron-left[aria-hidden="true"]
-          span.sr-only
-            | Previous
-        a.right.carousel-control[href="#carousel-generic" role="button" data-slide="next"]
-          span.glyphicon.glyphicon-chevron-right[aria-hidden="true"]
-          span.sr-only
-            | Next
-  .row
-    .col-xs-4
+      h4
+        'MISS CAKE
+      hr.divider
+  - @products.each do |product|
+    .product[id=product.id]
       .row
-        = product.name
+        center
+          #carousel-generic.carousel.slide[data-ride="carousel"]
+            ol.carousel-indicators
+              li.active[data-target="#carousel-generic" data-slide-to="0"]
+              li[data-target="#carousel-generic" data-slide-to="1"]
+              li[data-target="#carousel-generic" data-slide-to="2"]
+            .carousel-inner[role="listbox"]
+              .item.active
+                = image_tag(product.thumb)
+                .carousel-caption
+                  |  ... 
+              .item
+                = image_tag(product.thumb)
+                .carousel-caption
+                  |  ... 
+            a.left.carousel-control[href="#carousel-generic" role="button" data-slide="prev"]
+              span.glyphicon.glyphicon-chevron-left[aria-hidden="true"]
+              span.sr-only
+                | Previous
+            a.right.carousel-control[href="#carousel-generic" role="button" data-slide="next"]
+              span.glyphicon.glyphicon-chevron-right[aria-hidden="true"]
+              span.sr-only
+                | Next
       .row
-        font color='red'
-          = product.price
-    .col-xs-7
-    .col-xs-1
-        select
-          option value=0
-            '0
-          option value=1
-            '1
-          option value=2
-            '2
-          option value=3
-            '3
-          option value=4
-            '4
-          option value=5
-            '5
-  .row
-    | 口味：
-    = product.taste
-  .row
-    | 工艺：
-    = product.crafts
-  .row
-    | 功效：
-    = product.efficacy
-  .row
-    | 贴士：
-    = product.tips
-  .row
-    | 余量：
-    = product.inventory
+        .col-xs-4
+          .row
+            = product.name
+          .row
+            font color='red'
+              = product.price
+        .col-xs-7
+          .col-xs-1
+            select
+              option value=0
+                '0
+              option value=1
+                '1
+              option value=2
+                '2
+              option value=3
+                '3
+              option value=4
+                '4
+              option value=5
+                '5
+      .row
+        | 口味：
+        = product.taste
+      .row
+        | 工艺：
+        = product.crafts
+      .row
+        | 功效：
+        = product.efficacy
+      .row
+        | 贴士：
+        = product.tips
+      .row
+        | 余量：
+        = product.inventory
+      .row
+        hr.divider
+  .navbar-fixed-bottom[style='background:white']
+    center
+      hr.divider
+      .col-xs-4
+      .col-xs-4
+        button.btn.btn-success.btn-lg[type='button' data-toggle='modal' data-target='#calculate-modal']
+          | 添加至购物车
+      .col-xs-4
+
+#calculate-modal.modal.fade[tabindex="-1" role="dialog" aria-labelledby="calculate-modal-label"]
+  .modal-dialog.modal-lg[role="document"]
+    .modal-content
+      .modal-header
+        button.close[type="button" data-dismiss="modal" aria-label="Close"]
+          span[aria-hidden="true"]
+            | ×
+        #calculate-modal-label.modal-title
+          center
+            h4
+              | 购物车
+      form role='form'
+        .modal-body
+          #accordion.panel-group
+            .panel.panel-default
+              .panel-heading
+                h4.panel-title
+                  a[data-toggle="collapse" data-parent="#accordion" href="#collapse-order"]
+                    center
+                      |  订单信息 
+              #collapse-order.panel-collapse.collapse.in
+                .panel-body
+                  .order
+                    .row
+                      .col-xs-1
+                        .form-group
+                          input.form-control[type='checkbox']
+                      .col-xs-9
+                      .col-xs-12
+            .panel.panel-default
+              .panel-heading
+                h4.panel-title
+                  a[data-toggle="collapse" data-parent="#accordion" href="#collapse-customer"]
+                    center
+                      |  个人信息 
+              #collapse-customer.panel-collapse.collapse.in
+                .panel-body
+                    .row
+                      .col-xs-4
+                        .form-group 
+                          input.form-control#name[name='name'  placeholder='姓名' type='text']
+                      .col-xs-8
+                        .form-group 
+                          input.form-control#mobile[name='mobile'  placeholder='手机' type='text']
+                    .row
+                      .col-xs-12
+                        .form-group 
+                          textarea.form-control#address[name='address'  placeholder='收货地址']
+                    .row
+                      .col-xs-12
+                        .form-group
+                          .radio-inline
+                            label
+                              input.form-control#address_type[name='address_type' value='home' type='radio']
+                              | 家
+                          .radio-inline
+                            label
+                              input.form-control#address_type[name='address_type' value='school' type='radio']
+                              | 学校
+                          .radio-inline
+                            label
+                              input.form-control#address_type[name='address_type' value='company' type='radio']
+                              | 公司
+                    .row
+                      .col-xs-12
+                        .form-group 
+                          textarea.form-control#remark[name='remark'  placeholder='留言']
+                    .row
+                      .col-xs-12
+                        span.help-block
+                        | 以上所有信息为必填项
+        .modal-footer
+          button.btn.btn-success[type="button"]
+            | 结算
+
+javascript:
+  $('#calculate-modal').on('show.bs.modal', function (event) {
+    $.each($('.product'), function(){
+      var amount = $(this).find('select').val();
+      if(amount!=0) {
+        //$('.order').add('.row').val(amount);
+      }
+    })
+  })
