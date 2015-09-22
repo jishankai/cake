@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'https://ruby.taobao.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -35,6 +35,7 @@ gem 'pundit'
 
 # Wechat
 gem 'wechat'
+gem 'omniauth-wechat-oauth2'
 
 # Bootstrap
 gem 'bootstrap-sass', '~> 3.3.5'
@@ -43,6 +44,9 @@ gem 'autoprefixer-rails'
 # HTML
 gem 'slim-rails'
 gem 'html2slim'
+
+# Setting
+gem "figaro"
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
