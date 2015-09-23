@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
-  get 'site/index', :to => 'site#index'
-  get 'site/submit', :to => 'site#submit'
-  get 'site/calculate', :to => 'site#calculate'
+  match 'site/index' => 'site#index', via: [:get, :post]
+  get 'site/order' => 'site#order'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

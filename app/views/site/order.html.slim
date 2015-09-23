@@ -1,0 +1,29 @@
+.container#main-container
+  .row
+    center
+      h4 订单列表
+    hr.devider
+  .row
+    - @orders.each do |order|
+      .order[id=order.id]
+        .row
+          = order.context
+        .row
+          | 价格：
+          = order.fee
+        .row
+          | 日期：
+          = Time.at order.created_at
+        .row
+          | 状态：
+          = order.is_deliveried
+        .row
+          hr.divider
+  .navbar-fixed-bottom[style='background:white']
+    center
+      hr.divider
+      .col-sm-4
+      .col-sm-4
+        a.btn.btn-primary[href="index" role="button"]
+          | 继续购买
+      .col-sm-4

@@ -107,6 +107,7 @@
             span.glyphicon.glyphicon-shopping-cart
               h4 购物车
       form[role='form' action='index' method='post' data-toggle='validator']
+        = hidden_field_tag :authenticity_token, form_authenticity_token
         .modal-body
           .container-fluid
             #accordion.panel-group
@@ -130,20 +131,20 @@
                       .row
                         .col-sm-4
                           .form-group 
-                            input.form-control#name[name='name'  placeholder='姓名' type='text' required]
+                            input.form-control#name[name='name'  placeholder='姓名' type='text' value=@customer.name required]
                         .col-sm-8
                           .form-group 
-                            input.form-control#mobile[name='mobile'  placeholder='手机' type='text' required]
+                            input.form-control#mobile[name='mobile'  placeholder='手机' type='text' value=@customer.mobile required]
                       .row
                         .col-sm-12
                           .form-group 
-                            textarea.form-control#address[name='address'  placeholder='收货地址' required]
+                            textarea.form-control#address[name='address'  placeholder='收货地址' required] = @customer.home_address
                       .row
                         .col-sm-12
                           .form-group
                             .radio-inline
                               label
-                                input#address_type[name='address_type' value='home' type='radio' required]
+                                input#address_type[name='address_type' value='home' type='radio' checked required]
                                 | 家
                             .radio-inline
                               label
@@ -173,7 +174,25 @@
               .col-sm-6
                 button.btn.btn-success 提交
 
+#success-modal.modal.fade[tabindex="-1" role="dialog" aria-labelledby="success-modal-label"]
+  .modal-dialog[role="document"]
+    .modal-content
+      .modal-header
+      .modal-body
+        center
+          h3 购买成功
+      .modal-footer
+        center
+          button.btn.btn-default[type="button" data-dismiss="modal"]
+            | 继续逛逛
+          a.btn.btn-primary[href="record" role="button"]
+            | 查看订单
+
 javascript:
+  if (#{@is_success}) {
+    $('#success-modal').modal('show');
+  }
+
   $('#main-container select#amount').change(function(){
     var button_disabled = true;
     $('#main-container select#amount').each(function(){
@@ -185,7 +204,7 @@ javascript:
   });
   $('#calculate-modal').on('show.bs.modal', function (event) {
     total = 0;
-    order_arr = new Array();
+    order_dict = {};
     $('#collapse-order .panel-body').empty();
     $.each($('.product'), function(){
       var amount = $(this).find('select').val();
@@ -201,30 +220,44 @@ javascript:
         order_node.find('#amount').text(amount);
         order_node.attr('id', this.id);
         $('#collapse-order .panel-body').append(order_node);      
-        order_arr[this.id] = amount;
+        order_dict[this.id] = amount;
         total+=price*amount;
       }
     });
-    var order_json = JSON.stringify(order_arr);
+    var order_json = JSON.stringify(order_dict);
     $('#collapse-order input#order').val(order_json);
     $('.modal-footer input#total').val(total);
     $('.modal-footer span#total').text(total);
 
     $('input#order_checkbox').change(function(){
       var price = $(this).parent().parent().parent().parent().find('#price').text();
-      var id = $(this).parent().parent().parent().parent().parent().id;
+      var id = $(this).parent().parent().parent().parent().parent().attr('id');
       if (this.checked) {
         total+=price/1;
         var amount = $(this).parent().parent().parent().parent().find('#amount').text();
-        order_arr[id] = amount;
+        order_dict[id] = amount;
       } else {
         total-=price;
-        order_arr.remove(id);
+        delete order_dict[id];
       }
-      var order_json = JSON.stringify(order_arr);
+      var order_json = JSON.stringify(order_dict);
       $('#collapse-order input#order').val(order_json);
       $('.modal-footer input#total').val(total);
       $('.modal-footer span#total').text(total);
+    });
+
+    $('input#address_type').change(function(){
+      switch(this.value) {
+      case 'home':
+        $('textarea#address').text('#{@customer.home_address}');
+        break;
+      case 'school':
+        $('textarea#address').text('#{@customer.school_address}');
+        break;
+      case 'company':
+        $('textarea#address').text('#{@customer.company_address}');
+        break;
+      }
     });
   })
 
