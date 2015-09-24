@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   match 'site/index' => 'site#index', via: [:get, :post]
   get 'site/order' => 'site#order'
   # The priority is based upon order of creation: first created -> highest priority.
