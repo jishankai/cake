@@ -1,7 +1,7 @@
 .container#main-container
   - @products.each do |product|
     .product[id=product.id]
-      .row
+      .row.row-fluid
         center
           #carousel-generic.carousel.slide[data-ride="carousel"]
             ol.carousel-indicators
@@ -25,15 +25,15 @@
               span.glyphicon.glyphicon-chevron-right[aria-hidden="true"]
               span.sr-only
                 | Next
-      .row
+      .row.row-fluid
         .col-xs-4
           .row
             span#product_name
-              = product.name
+              b = product.name
           .row
             font[color='red']
               span#price
-                = product.price
+                b = product.price
         .col-xs-offset-6.col-xs-1
           select#amount
             option value=0
@@ -48,22 +48,22 @@
               '4
             option value=5
               '5
-      .row
-        | 口味：
+      .row.row-fluid
+        b 口味：
         = product.taste
-      .row
-        | 工艺：
+      .row.row-fluid
+        b 工艺：
         = product.crafts
-      .row
-        | 功效：
+      .row.row-fluid
+        b 功效：
         = product.efficacy
-      .row
-        | 贴士：
+      .row.row-fluid
+        b 贴士：
         = product.tips
-      .row
-        | 余量：
+      .row.row-fluid
+        b 余量：
         = product.inventory
-      .row
+      .row.row-fluid
         hr.divider
   nav.navbar.navbar-default.navbar-fixed-bottom[style='background:white']
     center
@@ -71,19 +71,19 @@
       .col-xs-offset-4.col-xs-4
         .btn-toolbar[role='toolbar']
           button.btn.btn-success.btn-block.navbar-btn#button_calculate[type='button' data-toggle='modal' data-target='#calculate-modal' disabled]
-            | 添加至购物车
+            | 添加
       .col-xs-4
         .order_sample[style='display:none']
           .row
-            .col-xs-4
+            .col-xs-6
               .checkbox-inline
                 label
                   input#order_checkbox[type='checkbox'] 
                     span#product_name Velet 红丝绒
-            .col-xs-6
+            .col-xs-3
               | × 
               span#amount 1
-            .col-xs-2
+            .col-xs-3
               font[color='red']
                 | ￥
                 span#price 25
