@@ -34,8 +34,8 @@
             font[color='red']
               span#price
                 b = product.price
-        .col-xs-offset-6.col-xs-1
-          select#amount
+        .col-xs-offset-5.col-xs-3
+          select.form-control#amount
             option value=0
               '0
             option value=1
@@ -71,7 +71,7 @@
       .col-xs-offset-4.col-xs-4
         .btn-toolbar[role='toolbar']
           button.btn.btn-success.btn-block.navbar-btn#button_calculate[type='button' data-toggle='modal' data-target='#calculate-modal' disabled]
-            | 添加
+            | 购物车
       .col-xs-4
         .order_sample[style='display:none']
           .row
@@ -123,10 +123,10 @@
                 #collapse-customer.panel-collapse.collapse.in
                   .panel-body
                       .row
-                        .col-xs-4
+                        .col-xs-5
                           .form-group 
                             input.form-control#name[name='name'  placeholder='姓名' type='text' value=@customer.name required]
-                        .col-xs-8
+                        .col-xs-7
                           .form-group 
                             input.form-control#mobile[name='mobile'  placeholder='手机' type='text' value=@customer.mobile required]
                       .row
@@ -155,7 +155,7 @@
                       .row
                         .col-xs-12
                           span.help-block
-                          | 以上所有信息除留言外为必填项
+                            | 以上所有信息除留言外为必填项
         .modal-footer
           .container-fluid
             .row
@@ -214,7 +214,7 @@ javascript:
         order_node.find('#amount').text(amount);
         order_node.attr('id', this.id);
         $('#collapse-order .panel-body').append(order_node);      
-        order_dict[this.id] = amount;
+        order_dict[this.id] = {'id':this.id, 'amount':amount};
         total+=price*amount;
       }
     });
