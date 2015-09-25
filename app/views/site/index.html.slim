@@ -17,11 +17,11 @@
                 = image_tag(product.thumb)
                 .carousel-caption
                   |  ... 
-            a.left.carousel-control[href="#carousel-generic" role="button" data-slide="prev"]
+            /a.left.carousel-control[href="#carousel-generic" role="button" data-slide="prev"]
               span.glyphicon.glyphicon-chevron-left[aria-hidden="true"]
               span.sr-only
                 | Previous
-            a.right.carousel-control[href="#carousel-generic" role="button" data-slide="next"]
+            /a.right.carousel-control[href="#carousel-generic" role="button" data-slide="next"]
               span.glyphicon.glyphicon-chevron-right[aria-hidden="true"]
               span.sr-only
                 | Next
@@ -34,8 +34,7 @@
             font[color='red']
               span#price
                 = product.price
-        .col-xs-7
-        .col-xs-1
+        .col-xs-offset-6.col-xs-1
           select#amount
             option value=0
               '0
@@ -66,12 +65,13 @@
         = product.inventory
       .row
         hr.divider
-  .navbar-fixed-bottom[style='background:white']
+  nav.navbar.navbar-default.navbar-fixed-bottom[style='background:white']
     center
-      hr.divider
+      /hr.divider
       .col-xs-offset-4.col-xs-4
-        button.btn.btn-success#button_calculate[type='button' data-toggle='modal' data-target='#calculate-modal' disabled]
-          | 添加至购物车
+        .btn-toolbar[role='toolbar']
+          button.btn.btn-success.btn-block.navbar-btn#button_calculate[type='button' data-toggle='modal' data-target='#calculate-modal' disabled]
+            | 添加至购物车
       .col-xs-4
         .order_sample[style='display:none']
           .row
