@@ -1,9 +1,4 @@
 .container#main-container
-  .navbar-fixed-top[style='background:white']
-    center
-      h4
-        'MISS CAKE
-      hr.divider
   - @products.each do |product|
     .product[id=product.id]
       .row
@@ -31,7 +26,7 @@
               span.sr-only
                 | Next
       .row
-        .col-sm-4
+        .col-xs-4
           .row
             span#product_name
               = product.name
@@ -39,8 +34,8 @@
             font[color='red']
               span#price
                 = product.price
-        .col-sm-7
-        .col-sm-1
+        .col-xs-7
+        .col-xs-1
           select#amount
             option value=0
               '0
@@ -74,22 +69,21 @@
   .navbar-fixed-bottom[style='background:white']
     center
       hr.divider
-      .col-sm-4
-      .col-sm-4
+      .col-xs-offset-4.col-xs-4
         button.btn.btn-success#button_calculate[type='button' data-toggle='modal' data-target='#calculate-modal' disabled]
           | 添加至购物车
-      .col-sm-4
+      .col-xs-4
         .order_sample[style='display:none']
           .row
-            .col-sm-4
+            .col-xs-4
               .checkbox-inline
                 label
                   input#order_checkbox[type='checkbox'] 
                     span#product_name Velet 红丝绒
-            .col-sm-6
+            .col-xs-6
               | × 
               span#amount 1
-            .col-sm-2
+            .col-xs-2
               font[color='red']
                 | ￥
                 span#price 25
@@ -129,18 +123,18 @@
                 #collapse-customer.panel-collapse.collapse.in
                   .panel-body
                       .row
-                        .col-sm-4
+                        .col-xs-4
                           .form-group 
                             input.form-control#name[name='name'  placeholder='姓名' type='text' value=@customer.name required]
-                        .col-sm-8
+                        .col-xs-8
                           .form-group 
                             input.form-control#mobile[name='mobile'  placeholder='手机' type='text' value=@customer.mobile required]
                       .row
-                        .col-sm-12
+                        .col-xs-12
                           .form-group 
                             textarea.form-control#address[name='address'  placeholder='收货地址' required] = @customer.home_address
                       .row
-                        .col-sm-12
+                        .col-xs-12
                           .form-group
                             .radio-inline
                               label
@@ -155,23 +149,23 @@
                                 input#address_type[name='address_type' value='company' type='radio' required]
                                 | 公司
                       .row
-                        .col-sm-12
+                        .col-xs-12
                           .form-group 
                             textarea.form-control#remark[name='remark'  placeholder='留言']
                       .row
-                        .col-sm-12
+                        .col-xs-12
                           span.help-block
                           | 以上所有信息除留言外为必填项
         .modal-footer
           .container-fluid
             .row
-              .col-sm-6[align='left']
+              .col-xs-6[align='left']
                 p.form-control-static[name='total']
                   font[color='red']
                     | 合计：￥
                     span#total 0
                 input#total[name='total' value=-1 type='hidden']
-              .col-sm-6
+              .col-xs-6
                 button.btn.btn-success 提交
 
 #success-modal.modal.fade[tabindex="-1" role="dialog" aria-labelledby="success-modal-label"]
