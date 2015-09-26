@@ -9,14 +9,21 @@
               li[data-target="#carousel-generic" data-slide-to="1"]
               li[data-target="#carousel-generic" data-slide-to="2"]
             .carousel-inner[role="listbox"]
-              .item.active
-                = image_tag(product.thumb)
-                .carousel-caption
-                  |  ... 
-              .item
-                = image_tag(product.thumb)
-                .carousel-caption
-                  |  ... 
+              - thumbs = ActiveSupport::JSON.decode(product.thumb)
+              - if (thumbs.length<=1)
+                .item.active
+                  = image_tag(thumbs.first)
+                  .carousel-caption
+              - else
+                - thumbs.each do |key, value|
+                  - if (key==0)
+                    .item.active
+                      = image_tag(value)
+                      .carousel-caption
+                  - else
+                    .item
+                      = image_tag(value)
+                      .carousel-caption
             /a.left.carousel-control[href="#carousel-generic" role="button" data-slide="prev"]
               span.glyphicon.glyphicon-chevron-left[aria-hidden="true"]
               span.sr-only
@@ -62,7 +69,7 @@
         = product.tips
       .row.row-fluid
         b 余量：
-        = product.inventory
+        span#inventory = product.inventory
       .row.row-fluid
         hr.divider
   nav.navbar.navbar-default.navbar-fixed-bottom[style='background:white']
@@ -190,6 +197,9 @@ javascript:
   $('#main-container select#amount').change(function(){
     var button_disabled = true;
     $('#main-container select#amount').each(function(){
+      //if ($(this).parent().parent().parent().find('#inventory').text()-$(this).val()<0) {
+      //  alert('库存不足');
+      //}
       if ($(this).val()!=0) {
         button_disabled = false;
       }
@@ -214,7 +224,7 @@ javascript:
         order_node.find('#amount').text(amount);
         order_node.attr('id', this.id);
         $('#collapse-order .panel-body').append(order_node);      
-        order_dict[this.id] = {'id':this.id, 'amount':amount};
+        order_dict[this.id] = amount;
         total+=price*amount;
       }
     });

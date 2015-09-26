@@ -5,7 +5,7 @@ class SiteController < ApplicationController
     end
     @uid = session[:uid]
 
-#    @uid = 'asdfgh'
+    #@uid = 'asdfgh'
     @customer = Customer.find_by wechat_id: @uid
     if @customer.nil?
       @customer = Customer.create(:wechat_id => @uid)
@@ -24,6 +24,14 @@ class SiteController < ApplicationController
           @customer.home_address = params[:address].tr("\n","")
         end
         @customer.save
+
+        order_hash = ActiveSupport::JSON.decode(params[:order])
+        order_hash.each do |key, value|
+          product = Product.find(key)
+          product.inventory-=value.to_i
+          product.save
+        end
+
         @order = Order.create(:wechat_id => @uid)
         @order.context = params[:order]
         @order.fee = params[:total]
@@ -40,12 +48,8 @@ class SiteController < ApplicationController
   end
 
   def order
-#    if session[:uid].nil?
-#      session[:uid] = request.env['omniauth.auth'][:uid]
-#    end
     @uid = session[:uid]
 
-#    @uid = 'asdfgh'
     @orders = Order.where(:wechat_id=>@uid).all
   end
 end
