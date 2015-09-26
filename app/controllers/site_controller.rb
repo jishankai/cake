@@ -1,11 +1,11 @@
 class SiteController < ApplicationController
   def index
-#    if session[:uid].nil?
-#      session[:uid] = request.env['omniauth.auth'][:uid]
-#    end
-#    @uid = session[:uid]
+    if session[:uid].nil?
+      session[:uid] = request.env['omniauth.auth'][:uid]
+    end
+    @uid = session[:uid]
 
-    @uid = 'asdfgh'
+#    @uid = 'asdfgh'
     @customer = Customer.find_by wechat_id: @uid
     if @customer.nil?
       @customer = Customer.create(:wechat_id => @uid)
@@ -43,9 +43,9 @@ class SiteController < ApplicationController
 #    if session[:uid].nil?
 #      session[:uid] = request.env['omniauth.auth'][:uid]
 #    end
-#    @uid = session[:uid]
+    @uid = session[:uid]
 
-    @uid = 'asdfgh'
+#    @uid = 'asdfgh'
     @orders = Order.where(:wechat_id=>@uid).all
   end
 end
