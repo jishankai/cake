@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   match 'site/index' => 'site#index', via: [:get, :post]
   get 'site/order' => 'site#order'
+  get '/auth/wechat/callback', :to => 'site#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
