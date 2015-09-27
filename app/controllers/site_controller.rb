@@ -2,7 +2,7 @@ class SiteController < ApplicationController
   def index
     if session[:uid].nil?
       if request.env['omniauth.auth'].nil?
-        redirect_to wechat_auth_path
+        redirect_to '/auth/wechat'
       end
       session[:uid] = request.env['omniauth.auth'][:uid]
     end
