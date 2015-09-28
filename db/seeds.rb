@@ -11,3 +11,5 @@ Product.create!(name: 'GreenTea 绿茶', thumb: '["绿茶.png"]', price: 25, tas
 Product.create!(name: 'Velet 红丝绒', thumb: '["红丝绒.png"]', price: 25, taste: '香甜浓郁', crafts: '将巧克力熬制成酱融入特制的杯底之中，将黄油和乳酪混合打发成特制奶油花制成', efficacy: '温暖治愈', tips: '搭配一杯清香花茶，心情瞬间美丽', inventory: 30)
 Product.create!(name: 'BlackTea 红茶', thumb: '["红茶.png"]', price: 25, taste: '清香醇厚', crafts: '将新鲜苹果加入红茶水中熬制成酱融于杯底之中，再将红茶粉混合调入奶油中制成', efficacy: '美容醒脑', tips: '搭配一杯清新红茶，温润甜醇', inventory: 30)
 Product.create!(name: 'Ginger 生姜', thumb: '["生姜.png"]', price: 25, taste: '酸甜温热', crafts: '冰糖与白醋秘制成酸爽姜块，将姜块切成碎屑与红糖及面粉调制杯底，将黄油和乳酪混合打发成特制奶油花制成', efficacy: '养颜祛寒', tips: '摘取奶油上的特制姜块泡水，从内而外的温暖', inventory: 30)
+
+User.create!(email: 'jishankai@qq.com', password: 'qwertyui', password_confirmation: 'qwertyui')
