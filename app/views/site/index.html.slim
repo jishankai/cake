@@ -75,26 +75,29 @@
   nav.navbar.navbar-default.navbar-fixed-bottom[style='background:white']
     center
       /hr.divider
-      .col-xs-offset-4.col-xs-4
-        .btn-toolbar[role='toolbar']
-          button.btn.btn-success.btn-block.navbar-btn#button_calculate[type='button' data-toggle='modal' data-target='#calculate-modal' disabled]
-            | 购物车
-      .col-xs-4
-        .order_sample[style='display:none']
-          .row
-            .col-xs-6
-              .checkbox-inline
-                label
-                  input#order_checkbox[type='checkbox'] 
-                    span#product_name Velet 红丝绒
-            .col-xs-3
-              | × 
-              span#amount 1
-            .col-xs-3
-              font[color='red']
-                | ￥
-                span#price 25
-          .hr.devider
+      .btn-toolbar[role='toolbar']
+        .col-xs-offset-2.col-xs-3
+            button.btn.btn-success.btn-block.navbar-btn#button_calculate[type='button' data-toggle='modal' data-target='#calculate-modal' disabled]
+              | 购物车
+        .col-xs-offset-2.col-xs-3
+            a.btn.btn-primary.btn-block.navbar-btn[href="order" role="button"]
+              | 我的订单
+        .col-xs-2
+          .order_sample[style='display:none']
+            .row
+              .col-xs-6
+                .checkbox-inline
+                  label
+                    input#order_checkbox[type='checkbox'] 
+                      span#product_name Velet 红丝绒
+              .col-xs-3
+                | × 
+                span#amount 1
+              .col-xs-3
+                font[color='red']
+                  | ￥
+                  span#price 25
+            .hr.devider
 
 #calculate-modal.modal.fade[tabindex="-1" role="dialog" aria-labelledby="calculate-modal-label"]
   .modal-dialog.modal-lg[role="document"]
@@ -175,25 +178,7 @@
               .col-xs-6
                 button.btn.btn-success 提交
 
-#success-modal.modal.fade[tabindex="-1" role="dialog" aria-labelledby="success-modal-label"]
-  .modal-dialog[role="document"]
-    .modal-content
-      .modal-header
-      .modal-body
-        center
-          h3 购买成功
-      .modal-footer
-        center
-          button.btn.btn-default[type="button" data-dismiss="modal"]
-            | 继续逛逛
-          a.btn.btn-primary[href="order" role="button"]
-            | 查看订单
-
 javascript:
-  if (#{@is_success}) {
-    $('#success-modal').modal('show');
-  }
-
   $('#main-container select#amount').change(function(){
     var button_disabled = true;
     $('#main-container select#amount').each(function(){

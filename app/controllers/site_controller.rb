@@ -46,7 +46,7 @@ class SiteController < ApplicationController
 
         #byebug
       end
-      @is_success = 1
+      redirect_to :action => :order
     end
     @products = Product.all
   end
