@@ -9,7 +9,7 @@ class SiteController < ApplicationController
     end
     @uid = session[:uid]
 
-#    @uid = 'asdfgh'
+    #@uid = 'asdfgh'
     @customer = Customer.find_by wechat_id: @uid
     if @customer.nil?
       @customer = Customer.create(:wechat_id => @uid)
@@ -53,7 +53,17 @@ class SiteController < ApplicationController
 
   def order
     @uid = session[:uid]
+    #@uid = 'asdfgh'
 
     @orders = Order.where(:wechat_id=>@uid).all
+    @orders.each do |value|
+      #byebug
+      @context_hash = ActiveSupport::JSON.decode(value.context);
+      value.context = '';
+      @context_hash.each do |k, v|
+        product = Product.find(k)
+        value.context+=product.name+'x'+v+' '
+      end
+    end
   end
 end

@@ -13,6 +13,7 @@ ActiveAdmin.register Product do
   #   permitted << :other if resource.something?
   #   permitted
   # end
+  permit_params :name, :thumb, :price, :taste, :crafts, :efficacy, :tips, :inventory
 
 
 end

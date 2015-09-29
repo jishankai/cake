@@ -1,29 +1,29 @@
 .container#main-container
-  .row
+  .row.row-fluid
     center
       h4 订单列表
     hr.devider
-  .row
+  .row.row-fluid
     - @orders.each do |order|
       .order[id=order.id]
-        .row
-          = order.context
-        .row
-          | 价格：
+        .row.row-fluid
+          b 内容：
+          span#context = order.context
+        .row.row-fluid
+          b 价格：
           = order.fee
-        .row
-          | 日期：
+        .row.row-fluid
+          b 日期：
           = Time.at order.created_at
-        .row
-          | 状态：
-          = order.is_deliveried
-        .row
+        .row.row-fluid
+          b 状态：
+          span#is_deliveried = order.is_deliveried ? '已配送':'未配送'
+        .row.row-fluid
           hr.divider
   nav.navbar.navbar-default.navbar-fixed-bottom[style='background:white']
     center
-      hr.divider
-      .col-sm-4
-      .col-sm-4
-        a.btn.btn-primary[href="index" role="button"]
-          | 继续购买
-      .col-sm-4
+      .col-xs-offset-4.col-xs-4
+        .btn-toolbar[role='toolbar']
+          a.btn.btn-primary.btn-block.navbar-btn[href="index" role="button"]
+            | 继续购买
+  

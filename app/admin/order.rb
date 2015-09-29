@@ -1,6 +1,7 @@
 ActiveAdmin.register Order do
   menu priority: 3, label: "订单"
 
+  actions :all, except: [:destroy]
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
@@ -13,6 +14,7 @@ ActiveAdmin.register Order do
   #   permitted << :other if resource.something?
   #   permitted
   # end
+  permit_params :is_paid, :is_deliveried
 
 
 end
