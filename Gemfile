@@ -33,6 +33,7 @@ gem 'cancan' # or cancancan
 gem 'draper'
 gem 'pundit'
 gem 'active_skin'
+gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 
 # Wechat
 gem 'wechat'

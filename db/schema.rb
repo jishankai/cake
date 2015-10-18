@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150923082001) do
+ActiveRecord::Schema.define(version: 20151018092512) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20150923082001) do
     t.string   "wechat_id",       limit: 255
     t.string   "name",            limit: 255
     t.string   "mobile",          limit: 255
+    t.integer  "score",           limit: 4,   null: false
     t.string   "home_address",    limit: 255
     t.string   "school_address",  limit: 255
     t.string   "company_address", limit: 255
@@ -52,7 +53,7 @@ ActiveRecord::Schema.define(version: 20150923082001) do
 
   create_table "products", force: :cascade do |t|
     t.string   "name",       limit: 255
-    t.string   "thumb",      limit: 255
+    t.text     "thumb",      limit: 65535
     t.float    "price",      limit: 24
     t.text     "taste",      limit: 65535
     t.text     "crafts",     limit: 65535

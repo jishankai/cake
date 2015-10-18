@@ -1,3 +1,4 @@
+# coding: utf-8
 ActiveAdmin.register Order do
   menu priority: 3, label: "订单"
 
@@ -16,5 +17,15 @@ ActiveAdmin.register Order do
   # end
   permit_params :is_paid, :is_deliveried
 
+  index do
+    selectable_column
+    column :context
+    column :fee
+    column :remark
+    column :is_paid
+    column :is_deliveried
+    column :created_at
+    actions
+  end
 
 end

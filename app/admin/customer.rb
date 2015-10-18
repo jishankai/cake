@@ -1,7 +1,8 @@
+# coding: utf-8
 ActiveAdmin.register Customer do
   menu priority: 2, label: "顾客"
 
-  actions :all, except: [:edit, :destroy]
+  actions :all, except: [:destroy]
 
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
@@ -16,5 +17,13 @@ ActiveAdmin.register Customer do
   #   permitted
   # end
 
+  index do
+    selectable_column
+    column :wechat_id
+    column :name
+    column :mobile
+    column :score
+    actions
+  end
 
 end

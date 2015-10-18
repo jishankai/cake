@@ -1,33 +1,28 @@
+# coding: utf-8
 ActiveAdmin.register_page "Dashboard" do
 
   menu priority: 1, label: proc{ I18n.t("active_admin.dashboard") }
 
   content title: proc{ I18n.t("active_admin.dashboard") } do
-    div class: "blank_slate_container", id: "dashboard_default_message" do
-      span class: "blank_slate" do
-        span I18n.t("active_admin.dashboard_welcome.welcome")
-        small I18n.t("active_admin.dashboard_welcome.call_to_action")
+    columns do
+      column do
+        panel "最近订单" do
+          table_for Order.order('id desc').limit(10) do
+            column("配送")  {|order| status_tag(order.is_deliveried)}
+            column("微信")  {|order| link_to(order.wechat_id, admin_order_path(order)) }
+            column("总价")  {|order| number_to_currency order.fee}
+          end
+        end
+      end
+
+      column do
+        panel "新增客人" do
+          table_for Customer.order('id desc').limit(10).each do |customer|
+            column("姓名")  {|customer| link_to(customer.name, admin_customer_path(customer)) }
+            column("手机")  {|customer| customer.mobile }
+          end
+        end
       end
     end
-
-    # Here is an example of a simple dashboard with columns and panels.
-    #
-    # columns do
-    #   column do
-    #     panel "Recent Posts" do
-    #       ul do
-    #         Post.recent(5).map do |post|
-    #           li link_to(post.title, admin_post_path(post))
-    #         end
-    #       end
-    #     end
-    #   end
-
-    #   column do
-    #     panel "Info" do
-    #       para "Welcome to ActiveAdmin."
-    #     end
-    #   end
-    # end
   end # content
 end
