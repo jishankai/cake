@@ -8,7 +8,7 @@ class Order < ActiveRecord::Base
     # 重新更新支付流水号
     self.pay_serial_number = "#{wechat_id}-#{Time.current.to_i}"
     unifiedorder = {
-      body: "#{SITE_NAME}-订单",
+      body: "念客MissCake-订单",
       out_trade_no: pay_serial_number,
       total_fee: (total_price * 100).to_i, # 需要转换为分
       spbill_create_ip: options[:remote_ip] || '127.0.0.1',
