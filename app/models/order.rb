@@ -6,7 +6,7 @@ class Order < ActiveRecord::Base
     return true if Rails.env.development?
     return true if is_prepay_id_valid?
     # 重新更新支付流水号
-    self.pay_serial_number = "#{wechat_id}-#{Time.current.to_i}"
+    self.pay_serial_number = "#{id}-#{Time.current.to_i}"
     unifiedorder = {
       body: "念客MissCake-订单",
       out_trade_no: pay_serial_number,
