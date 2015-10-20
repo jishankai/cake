@@ -15,7 +15,7 @@ class Order < ActiveRecord::Base
       notify_url: wx_notify_url,
       trade_type: "JSAPI",
       nonce_str: SecureRandom.hex,
-      openid: user.openid
+      openid: wechat_id
 
     }
     Rails.logger.debug("unifiedorder_params: #{unifiedorder}")
