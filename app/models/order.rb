@@ -16,7 +16,6 @@ class Order < ActiveRecord::Base
       trade_type: "JSAPI",
       nonce_str: SecureRandom.hex,
       openid: wechat_id
-
     }
     Rails.logger.debug("unifiedorder_params: #{unifiedorder}")
     res = WxPay::Service.invoke_unifiedorder(unifiedorder)
@@ -38,7 +37,7 @@ class Order < ActiveRecord::Base
   end
 
   def wx_notify_url
-    "#{Rails.application.secrets.host_url}pay_notify/wechat_notify"
+    "http://misscake.cc/pay_notify/wechat_notify"
   end
 
   # 总价
