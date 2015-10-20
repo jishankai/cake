@@ -6,9 +6,9 @@ class Order < ActiveRecord::Base
     return true if Rails.env.development?
     return true if is_prepay_id_valid?
     # 重新更新支付流水号
-    self.pay_serial_number = "#{number}-#{Time.current.to_i}"
+    self.pay_serial_number = "#{wechat_id}-#{Time.current.to_i}"
     unifiedorder = {
-      body: "#{SITE_NAME}-#{number}",
+      body: "#{SITE_NAME}-订单",
       out_trade_no: pay_serial_number,
       total_fee: (total_price * 100).to_i, # 需要转换为分
       spbill_create_ip: options[:remote_ip] || '127.0.0.1',
