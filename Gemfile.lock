@@ -1,13 +1,3 @@
-GIT
-  remote: git://github.com/carrierwaveuploader/carrierwave.git
-  revision: 49fdad1ec6ca9bb0883b6e193ea64e036e7b48a0
-  specs:
-    carrierwave (0.10.0)
-      activemodel (>= 3.2.0)
-      activesupport (>= 3.2.0)
-      json (>= 1.7)
-      mime-types (>= 1.16)
-
 GEM
   remote: https://ruby.taobao.org/
   specs:
@@ -30,6 +20,9 @@ GEM
       erubis (~> 2.7.0)
       rails-dom-testing (~> 1.0, >= 1.0.5)
       rails-html-sanitizer (~> 1.0, >= 1.0.2)
+    active_admin_multi_upload (0.1.0)
+      jquery-fileupload-rails (= 0.4.1)
+      rails (>= 4.0.0)
     active_skin (0.0.9)
     activeadmin (1.0.0.pre1)
       arbre (~> 1.0, >= 1.0.2)
@@ -92,6 +85,11 @@ GEM
       capistrano-bundler (~> 1.1)
     capistrano-rails-collection (0.0.3)
       capistrano-rails (~> 1.1.0)
+    carrierwave (0.10.0)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
+      json (>= 1.7)
+      mime-types (>= 1.16)
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -108,7 +106,7 @@ GEM
       responders
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
-    domain_name (0.5.24)
+    domain_name (0.5.25)
       unf (>= 0.0.5, < 1.0.0)
     draper (2.1.0)
       actionpack (>= 3.0)
@@ -144,6 +142,9 @@ GEM
     jbuilder (2.3.1)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
+    jquery-fileupload-rails (0.4.1)
+      actionpack (>= 3.1)
+      railties (>= 3.1)
     jquery-rails (4.0.5)
       rails-dom-testing (~> 1.0)
       railties (>= 4.2.0)
@@ -159,9 +160,9 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
-    mime-types (2.6.1)
+    mime-types (2.6.2)
     mini_portile (0.6.2)
-    minitest (5.8.0)
+    minitest (5.8.1)
     multi_json (1.11.2)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
@@ -257,9 +258,9 @@ GEM
       railties (>= 3.1, < 5.0)
       slim (~> 3.0)
     spring (1.3.6)
-    sprockets (3.3.3)
-      rack (~> 1.0)
-    sprockets-rails (2.3.2)
+    sprockets (3.4.0)
+      rack (> 1, < 3)
+    sprockets-rails (2.3.3)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
@@ -289,15 +290,19 @@ GEM
       binding_of_caller (>= 0.7.2)
       railties (>= 4.0)
       sprockets-rails (>= 2.0, < 4.0)
-    wechat (0.3.0)
+    wechat (0.6.0)
+      activesupport (>= 3.2)
       nokogiri (>= 1.6.0)
-      rails (>= 3.2)
       rest-client
+    wx_pay (0.2.0)
+      activesupport (>= 3.2)
+      rest-client (>= 1.7)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_admin_multi_upload
   active_skin
   activeadmin (~> 1.0.0.pre1)
   autoprefixer-rails
@@ -307,7 +312,7 @@ DEPENDENCIES
   capistrano-passenger
   capistrano-rails
   capistrano-rails-collection
-  carrierwave!
+  carrierwave
   coffee-rails (~> 4.1.0)
   devise
   draper
@@ -329,6 +334,7 @@ DEPENDENCIES
   uglifier (>= 1.3.0)
   web-console (~> 2.0)
   wechat
+  wx_pay
 
 BUNDLED WITH
    1.10.6

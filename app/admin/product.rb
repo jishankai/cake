@@ -13,7 +13,7 @@ ActiveAdmin.register Product do
   #   permitted << :other if resource.something?
   #   permitted
   # end
-  permit_params :name, :price, :taste, :crafts, :efficacy, :tips, :inventory, images:[]
+  permit_params :name, :price, :taste, :crafts, :efficacy, :tips, :inventory, attachments_attributes: [:name]
 
   index do
     selectable_column
@@ -35,15 +35,6 @@ ActiveAdmin.register Product do
       row :price do |product|
         number_to_currency product.price
       end
-      # row :thumb do
-      #   ul do
-      #     product.thumb.each do |t|
-      #       li do
-      #         image_tag(t.url(:thumb))
-      #       end
-      #     end
-      #   end
-      # end
       row :taste
       row :crafts
       row :efficacy
@@ -52,7 +43,7 @@ ActiveAdmin.register Product do
     end
   end
 
-  form :html => { :multipart => true } do |f|
+  form multipart: true do |f|
     f.semantic_errors
 
     f.inputs do
@@ -63,7 +54,10 @@ ActiveAdmin.register Product do
       f.input :efficacy
       f.input :tips
       f.input :inventory
-      f.input :thumb, as: :file, input_html: { multiple: true }
+      f.has_many :attachments do |ff|
+        ff.input :name, :as => :file, :hint => image_tag(ff.object.name)
+        ff.input :name_cache, :as => :hidden
+      end
     end
 
     actions

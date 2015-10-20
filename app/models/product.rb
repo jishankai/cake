@@ -1,3 +1,4 @@
 class Product < ActiveRecord::Base
-  mount_uploader :thumb, ThumbUploader
+  has_many :attachments
+  accepts_nested_attributes_for :attachments, :allow_destroy => true
 end

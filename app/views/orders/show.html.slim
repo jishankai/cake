@@ -1,0 +1,62 @@
+- if !@order.is_paid? && !@order.is_cancel?
+  a.to_pay.btn.btn-small[href="javascript:;"]
+    | 立即支付
+- sign_package = WechatsController.wechat.jsapi_ticket.signature(request.original_url)
+= javascript_include_tag '//res.wx.qq.com/open/js/jweixin-1.0.0.js'
+
+javascript:
+  wx.config({
+    debug: false,
+    appId: "<%= sign_package['appId'] %>",
+    timestamp: "<%= sign_package['timestamp'] %>",
+    nonceStr: "<%= sign_package['nonceStr'] %>",
+    signature: "<%= sign_package['signature'] %>",
+    jsApiList: [
+      'onMenuShareTimeline',
+      'onMenuShareAppMessage',
+      'onMenuShareQQ',
+      'onMenuShareWeibo',
+      'hideMenuItems',
+      'showMenuItems',
+      'hideAllNonBaseMenuItem',
+      'showAllNonBaseMenuItem',
+      'translateVoice',
+      'startRecord',
+      'stopRecord',
+      'onRecordEnd',
+      'playVoice',
+      'pauseVoice',
+      'stopVoice',
+      'uploadVoice',
+      'downloadVoice',
+      'chooseImage',
+      'previewImage',
+      'uploadImage',
+      'downloadImage',
+      'getNetworkType',
+      'openLocation',
+      'getLocation',
+      'hideOptionMenu',
+      'showOptionMenu',
+      'closeWindow',
+      'scanQRCode',
+      'chooseWXPay',
+      'openProductSpecificView',
+      'addCard',
+      'chooseCard',
+      'openCard'
+    ]
+  });
+
+  var order_id = "#{@order.id}";
+  $(".to_pay").click(function(){
+    wx.chooseWXPay({
+      "timestamp": "#{@pay_p[:timeStamp]}",
+      "nonceStr": "#{@pay_p[:nonceStr]}",
+      "package": "#{@pay_p[:package]}",
+      "signType": "#{@pay_p[:signType]}",
+      "paySign": "#{@pay_sign}", // 支付签名
+      success: function (res) {
+        window.location.href = "/orders/" + order_id + "/pay_success";
+      }
+  });

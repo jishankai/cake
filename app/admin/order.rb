@@ -19,7 +19,15 @@ ActiveAdmin.register Order do
 
   index do
     selectable_column
-    column :context
+    column :context do |order|
+      @context_hash = ActiveSupport::JSON.decode(order.context);
+      order.context = '';
+      @context_hash.each do |k, v|
+        product = Product.find(k)
+        order.context+=product.name+'x'+v+' '
+      end
+      order.context
+    end
     column :fee
     column :remark
     column :is_paid

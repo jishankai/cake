@@ -33,11 +33,13 @@ gem 'cancan' # or cancancan
 gem 'draper'
 gem 'pundit'
 gem 'active_skin'
-gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
+gem 'carrierwave'
+gem "active_admin_multi_upload"
 
 # Wechat
 gem 'wechat'
 gem 'omniauth-wechat-oauth2'
+gem 'wx_pay'
 
 # Bootstrap
 gem 'bootstrap-sass', '~> 3.3.5'

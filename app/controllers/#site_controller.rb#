@@ -15,7 +15,34 @@ class SiteController < ApplicationController
     if @customer.nil?
       @customer = Customer.create(:wechat_id => @uid)
     end
+    @is_success = 0
+    if request.post?
+      Customer.transaction do
+        @customer.name = params[:name]
+        @customer.mobile = params[:mobile]
+        case params[:address_type]
+        when 'school'
+          @customer.school_address = params[:address].tr("\n","")
+        when 'company'
+          @customer.company_address = params[:address].tr("\n","")
+        else
+          @customer.home_address = params[:address].tr("\n","")
+        end
+        @customer.save
 
+
+        @order = Order.create(:wechat_id => @uid)
+        @order.context = params[:order]
+        @order.fee = params[:total]
+        @order.remark = params[:remark]
+        @order.is_paid = 0
+        @order.is_deliveried = 0
+        @order.save
+
+        #byebug
+      end
+      redirect_to :action => "show", :controller => "orders"
+    end
     @products = Product.all
   end
 

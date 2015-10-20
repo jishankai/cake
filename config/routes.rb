@@ -1,9 +1,17 @@
 Rails.application.routes.draw do
+  resource :wechat, only: [:show, :create]
   devise_for :users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  match 'site/index' => 'site#index', via: [:get, :post]
-  get 'site/order' => 'site#order'
+  match 'index' => 'site#index', via: [:get, :post]
+  match '/orders/show' => 'orders#show', via: [:get, :post]
+  get 'order' => 'site#order'
   get '/auth/wechat/callback', :to => 'site#index'
+  resource :pay_notify, only: [] do
+    collection do
+      post :weixin_notify
+      post :weixin_exception_notify
+    end
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

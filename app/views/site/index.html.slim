@@ -9,20 +9,15 @@
               li[data-target="#carousel-generic" data-slide-to="1"]
               li[data-target="#carousel-generic" data-slide-to="2"]
             .carousel-inner[role="listbox"]
-              - thumbs = ActiveSupport::JSON.decode(product.thumb)
-              - if (thumbs.length<=1)
-                .item.active
-                  = image_tag(thumbs.first)
-                  .carousel-caption
-              - else
-                - thumbs.each do |key, value|
-                  - if (key==0)
+              - if (product.attachments.count!=0)
+                - product.attachments.each_with_index do |attachment, index|
+                  - if (index==0)
                     .item.active
-                      = image_tag(value)
+                      = image_tag(attachment.name)
                       .carousel-caption
                   - else
                     .item
-                      = image_tag(value)
+                      = image_tag(attachment.name)
                       .carousel-caption
             /a.left.carousel-control[href="#carousel-generic" role="button" data-slide="prev"]
               span.glyphicon.glyphicon-chevron-left[aria-hidden="true"]
@@ -110,7 +105,7 @@
           center
             span.glyphicon.glyphicon-shopping-cart
               h4 购物车
-      form[role='form' action='/site/index' method='post' data-toggle='validator']
+      form[role='form' action='/orders/show' method='post' data-toggle='validator']
         = hidden_field_tag :authenticity_token, form_authenticity_token
         .modal-body
           .container-fluid
@@ -176,7 +171,7 @@
                     span#total 0
                 input#total[name='total' value=-1 type='hidden']
               .col-xs-6
-                button.btn.btn-success 提交
+                button.btn.btn-success 提交订单
 
 javascript:
   $('#main-container select#amount').change(function(){
