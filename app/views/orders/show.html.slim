@@ -48,7 +48,7 @@ javascript:
     ]
   });
 
-  wx.ready(function(){})
+  wx.ready(function(){
     $(".to_pay").click(function(){
       wx.chooseWXPay({
         "timestamp": "#{@pay_p[:timeStamp]}",
@@ -61,4 +61,4 @@ javascript:
         }
       });
     });
-  )};
+  });
