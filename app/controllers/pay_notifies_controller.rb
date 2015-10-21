@@ -9,12 +9,11 @@ class PayNotifiesController < ActionController::Base
       order = Order.find_by(pay_serial_number: pay_serial_number)
       order.fee = result["total_fee"]
       order.is_paid = 1
-      order.pay_logs.new(
+      order.pay_logs = {
         pay_type: "weixin",
         trade_type: result[:trade_type],
         log: result
-
-      )
+      }
       order.save(validate: false)
       # 支付成功后，减库存
       order_hash = ActiveSupport::JSON.decode(order.context)
