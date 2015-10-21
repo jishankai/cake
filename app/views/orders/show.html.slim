@@ -1,12 +1,36 @@
-- if !@order.is_paid? && !@order.is_cancel?
-  a.to_pay.btn.btn-small[href="javascript:;"]
-    | 立即支付
-- sign_package = WechatsController.wechat.jsapi_ticket.signature(request.original_url)
-= javascript_include_tag '//res.wx.qq.com/open/js/jweixin-1.0.0.js'
+.container#main-container
+  .row.row-fluid
+    center
+      h4 支付订单
+    hr.devider
+  .row.row-fluid
+    .order[id=order.id]
+      .row.row-fluid
+        b 内容：
+        span#context = order.context
+      .row.row-fluid
+        b 价格：
+        = order.fee
+      .row.row-fluid
+        b 日期：
+        = Time.at order.created_at
+      .row.row-fluid
+        b 状态：
+        span#is_deliveried = order.is_deliveried ? '已配送':'未配送'
+      .row.row-fluid
+        hr.divider
+  nav.navbar.navbar-default.navbar-fixed-bottom[style='background:white']
+    center
+      .col-xs-offset-4.col-xs-4
+        .btn-toolbar[role='toolbar']
+          a.to_pay.btn.btn-success.btn-block.navbar-btn[href="javascript:;"]
+            | 立即支付
 
+= javascript_include_tag '//res.wx.qq.com/open/js/jweixin-1.0.0.js'
+- sign_package = WechatsController.wechat.jsapi_ticket.signature(request.original_url)
 javascript:
   wx.config({
-    debug: true,
+    debug: false,
     appId: "#{Rails.application.secrets.app_id}",
     timestamp: "#{sign_package[:timestamp]}",
     nonceStr: "#{sign_package[:noncestr]}",

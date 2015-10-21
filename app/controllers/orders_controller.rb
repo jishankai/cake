@@ -25,6 +25,13 @@ class OrdersController < ApplicationController
       @order.save
     end
 
+    @context_hash = ActiveSupport::JSON.decode(@order.context);
+    @order.context = '';
+    @context_hash.each do |k, v|
+      product = Product.find(k)
+      @order.context+=product.name+'x'+v+' '
+    end
+
     @pay_p = {
       appId: Rails.application.secrets.app_id,
       timeStamp: Time.now.to_i.to_s,
