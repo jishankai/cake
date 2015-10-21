@@ -2,15 +2,15 @@
   a.to_pay.btn.btn-small[href="javascript:;"]
     | 立即支付
 - sign_package = WechatsController.wechat.jsapi_ticket.signature(request.original_url)
-= javascript_include_tag 'http://res.wx.qq.com/open/js/jweixin-1.0.0.js'
+= javascript_include_tag '//res.wx.qq.com/open/js/jweixin-1.0.0.js'
 
 javascript:
   wx.config({
     debug: false,
-    appId: "<%= sign_package['appId'] %>",
-    timestamp: "<%= sign_package['timestamp'] %>",
-    nonceStr: "<%= sign_package['nonceStr'] %>",
-    signature: "<%= sign_package['signature'] %>",
+    appId: "#{Rails.application.secrets.app_id}",
+    timestamp: "#{sign_package['timestamp']}",
+    nonceStr: "#{sign_package['nonceStr']}",
+    signature: "#{sign_package['signature']}",
     jsApiList: [
       'onMenuShareTimeline',
       'onMenuShareAppMessage',
