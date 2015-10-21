@@ -13,7 +13,7 @@ class SiteController < ApplicationController
     #@uid = 'asdfgh'
     @customer = Customer.find_by wechat_id: @uid
     if @customer.nil?
-      @customer = Customer.create(:wechat_id => @uid)
+      @customer = Customer.create(:wechat_id => @uid, :score=>0)
     end
 
     @products = Product.all
