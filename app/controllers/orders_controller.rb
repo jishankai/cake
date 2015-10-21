@@ -26,10 +26,10 @@ class OrdersController < ApplicationController
     end
 
     @context_hash = ActiveSupport::JSON.decode(@order.context);
-    @order.context = '';
+    @context = '';
     @context_hash.each do |k, v|
       product = Product.find(k)
-      @order.context+=product.name+'x'+v+' '
+      @context+=product.name+'x'+v+' '
     end
 
     @pay_p = {
