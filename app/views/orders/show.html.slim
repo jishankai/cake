@@ -4,19 +4,16 @@
       h4 支付订单
     hr.devider
   .row.row-fluid
-    .order[id=order.id]
+    .order[id=@order.id]
       .row.row-fluid
         b 内容：
-        span#context = order.context
+        span#context = @order.context
       .row.row-fluid
         b 价格：
-        = order.fee
+        = @order.fee
       .row.row-fluid
         b 日期：
-        = Time.at order.created_at
-      .row.row-fluid
-        b 状态：
-        span#is_deliveried = order.is_deliveried ? '已配送':'未配送'
+        = Time.at @order.created_at
       .row.row-fluid
         hr.divider
   nav.navbar.navbar-default.navbar-fixed-bottom[style='background:white']
