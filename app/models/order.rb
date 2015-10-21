@@ -37,7 +37,7 @@ class Order < ActiveRecord::Base
   end
 
   def wx_notify_url
-    "http://misscake.cc/pay_notify/wechat_notify"
+    "http://misscake.cc/pay_notify/weixin_notify"
   end
 
   # 总价
