@@ -15,6 +15,15 @@
         b 日期：
         = Time.at @order.created_at
       .row.row-fluid
+        b 姓名:
+        = @order.customer.name
+      .row.row-fluid
+        b 地址：
+        = @order.customer.home_address
+      .row.row-fluid
+        b 电话：
+        = @order.customer.mobile
+      .row.row-fluid
         hr.divider
   nav.navbar.navbar-default.navbar-fixed-bottom[style='background:white']
     center

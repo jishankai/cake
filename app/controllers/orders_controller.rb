@@ -6,14 +6,15 @@ class OrdersController < ApplicationController
     Customer.transaction do
       @customer.name = params[:name]
       @customer.mobile = params[:mobile]
-      case params[:address_type]
-      when 'school'
-        @customer.school_address = params[:address].tr("\n","")
-      when 'company'
-        @customer.company_address = params[:address].tr("\n","")
-      else
-        @customer.home_address = params[:address].tr("\n","")
-      end
+      # case params[:address_type]
+      # when 'school'
+      #   @customer.school_address = params[:address].tr("\n","")
+      # when 'company'
+      #   @customer.company_address = params[:address].tr("\n","")
+      # else
+      #   @customer.home_address = params[:address].tr("\n","")
+      # end
+      @customer.home_address = params[:address].tr("\n", "")
       @customer.save
 
       @order = Order.create(:wechat_id => @uid)

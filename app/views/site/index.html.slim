@@ -73,7 +73,7 @@
       .btn-toolbar[role='toolbar']
         .col-xs-offset-2.col-xs-4
             button.btn.btn-success.btn-block.navbar-btn#button_calculate[type='button' data-toggle='modal' data-target='#calculate-modal' disabled]
-              | 购物车
+              | 立即购买
         .col-xs-4
             a.btn.btn-primary.btn-block.navbar-btn[href="/order" role="button"]
               | 我的订单
@@ -138,21 +138,21 @@
                         .col-xs-12
                           .form-group 
                             textarea.form-control#address[name='address'  placeholder='收货地址' required] = @customer.home_address
-                      .row
-                        .col-xs-12
-                          .form-group
-                            .radio-inline
-                              label
-                                input#address_type[name='address_type' value='home' type='radio' checked required]
-                                | 家
-                            .radio-inline
-                              label
-                                input#address_type[name='address_type' value='school' type='radio' required]
-                                | 学校
-                            .radio-inline
-                              label
-                                input#address_type[name='address_type' value='company' type='radio' required]
-                                | 公司
+                      / .row
+                      /   .col-xs-12
+                      /     .form-group
+                      /       .radio-inline
+                      /         label
+                      /           input#address_type[name='address_type' value='home' type='radio' checked required]
+                      /           | 家
+                      /       .radio-inline
+                      /         label
+                      /           input#address_type[name='address_type' value='school' type='radio' required]
+                      /           | 学校
+                      /       .radio-inline
+                      /         label
+                      /           input#address_type[name='address_type' value='company' type='radio' required]
+                      /           | 公司
                       .row
                         .col-xs-12
                           .form-group 
@@ -230,18 +230,18 @@ javascript:
       $('.modal-footer span#total').text(total);
     });
 
-    $('input#address_type').change(function(){
-      switch(this.value) {
-      case 'home':
-        $('textarea#address').text('#{@customer.home_address}');
-        break;
-      case 'school':
-        $('textarea#address').text('#{@customer.school_address}');
-        break;
-      case 'company':
-        $('textarea#address').text('#{@customer.company_address}');
-        break;
-      }
-    });
+    / $('input#address_type').change(function(){
+    /   switch(this.value) {
+    /   case 'home':
+    /     $('textarea#address').text('#{@customer.home_address}');
+    /     break;
+    /   case 'school':
+    /     $('textarea#address').text('#{@customer.school_address}');
+    /     break;
+    /   case 'company':
+    /     $('textarea#address').text('#{@customer.company_address}');
+    /     break;
+    /   }
+    / });
   })
 
