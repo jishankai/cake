@@ -1,4 +1,5 @@
 .container#main-container
+  br
   - @products.each do |product|
     .product[id=product.id]
       .row.row-fluid
@@ -28,6 +29,7 @@
           /     span.glyphicon.glyphicon-chevron-right[aria-hidden="true"]
           /     span.sr-only
           /       | Next
+      br
       .row.row-fluid
         .col-xs-4
           .row
