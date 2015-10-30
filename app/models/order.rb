@@ -1,6 +1,6 @@
 # coding: utf-8
 class Order < ActiveRecord::Base
-  belongs_to :customer, :foreign_key => 'wechat_id'
+  belongs_to :customer
   # 只有当微信支付时使用到，订单一旦确认(confirm)，即进行获取
   # {remote_ip: request.ip}
   def set_prepay_id(options={})

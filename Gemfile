@@ -45,7 +45,7 @@ gem 'wx_pay'
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'autoprefixer-rails'
 
-# HTML
+# HTML&CSS
 gem 'slim-rails'
 gem 'html2slim'
 

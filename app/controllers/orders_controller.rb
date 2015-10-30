@@ -17,7 +17,8 @@ class OrdersController < ApplicationController
       @customer.home_address = params[:address].tr("\n", "")
       @customer.save
 
-      @order = Order.create(:wechat_id => @uid)
+      #@order = Order.create(:wechat_id => @uid)
+      @order = @customer.orders.build()
       @order.context = params[:order]
       @order.fee = params[:total]
       @order.remark = params[:remark]

@@ -3,39 +3,40 @@
     .product[id=product.id]
       .row.row-fluid
         center
-          #carousel-generic.carousel.slide[data-ride="carousel"]
-            ol.carousel-indicators
-              li.active[data-target="#carousel-generic" data-slide-to="0"]
-              li[data-target="#carousel-generic" data-slide-to="1"]
-              li[data-target="#carousel-generic" data-slide-to="2"]
-            .carousel-inner[role="listbox"]
-              - if (product.attachments.count!=0)
-                - product.attachments.each_with_index do |attachment, index|
-                  - if (index==0)
-                    .item.active
-                      = image_tag(attachment.name)
-                      .carousel-caption
-                  - else
-                    .item
-                      = image_tag(attachment.name)
-                      .carousel-caption
-            /a.left.carousel-control[href="#carousel-generic" role="button" data-slide="prev"]
-              span.glyphicon.glyphicon-chevron-left[aria-hidden="true"]
-              span.sr-only
-                | Previous
-            /a.right.carousel-control[href="#carousel-generic" role="button" data-slide="next"]
-              span.glyphicon.glyphicon-chevron-right[aria-hidden="true"]
-              span.sr-only
-                | Next
+          image_tag(product.attachments.first.name)
+          / #carousel-generic.carousel.slide[data-ride="carousel"]
+          /   ol.carousel-indicators
+          /     li.active[data-target="#carousel-generic" data-slide-to="0"]
+          /     li[data-target="#carousel-generic" data-slide-to="1"]
+          /     li[data-target="#carousel-generic" data-slide-to="2"]
+          /   .carousel-inner[role="listbox"]
+          /     - if (product.attachments.count!=0)
+          /       - product.attachments.each_with_index do |attachment, index|
+          /         - if (index==0)
+          /           .item.active
+          /             = image_tag(attachment.name)
+          /             .carousel-caption
+          /         - else
+          /           .item
+          /             = image_tag(attachment.name)
+          /             .carousel-caption
+          /   a.left.carousel-control[href="#carousel-generic" role="button" data-slide="prev"]
+          /     span.glyphicon.glyphicon-chevron-left[aria-hidden="true"]
+          /     span.sr-only
+          /       | Previous
+          /   a.right.carousel-control[href="#carousel-generic" role="button" data-slide="next"]
+          /     span.glyphicon.glyphicon-chevron-right[aria-hidden="true"]
+          /     span.sr-only
+          /       | Next
       .row.row-fluid
         .col-xs-4
           .row
             span#product_name
-              b = product.name
+              b = " #{product.name}"
           .row
             font[color='red']
               span#price
-                b = product.price
+                b = " #{product.price}"
         .col-xs-offset-5.col-xs-3
           select.form-control#amount
             option value=0
@@ -62,11 +63,12 @@
       .row.row-fluid
         b 贴士：
         = product.tips
-      .row.row-fluid
-        b 余量：
-        span#inventory = product.inventory
+      / .row.row-fluid
+      /   b 余量：
+      /   span#inventory = product.inventory
       .row.row-fluid
         hr.divider
+  br
   nav.navbar.navbar-default.navbar-fixed-bottom[style='background:white']
     center
       /hr.divider
@@ -89,8 +91,8 @@
                 | × 
                 span#amount 1
               .col-xs-3
+                i.fa.fa-rmb
                 font[color='red']
-                  | ￥
                   span#price 25
             .hr.devider
 
@@ -229,19 +231,20 @@ javascript:
       $('.modal-footer input#total').val(total);
       $('.modal-footer span#total').text(total);
     });
-
-    / $('input#address_type').change(function(){
-    /   switch(this.value) {
-    /   case 'home':
-    /     $('textarea#address').text('#{@customer.home_address}');
-    /     break;
-    /   case 'school':
-    /     $('textarea#address').text('#{@customer.school_address}');
-    /     break;
-    /   case 'company':
-    /     $('textarea#address').text('#{@customer.company_address}');
-    /     break;
-    /   }
-    / });
+    /*
+    // $('input#address_type').change(function(){
+    //   switch(this.value) {
+    //   case 'home':
+    //     $('textarea#address').text('#{@customer.home_address}');
+    //     break;
+    //   case 'school':
+    //     $('textarea#address').text('#{@customer.school_address}');
+    //     break;
+    //   case 'company':
+    //     $('textarea#address').text('#{@customer.company_address}');
+    //     break;
+    //   }
+    // });
+    */
   })
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151020104046) do
+ActiveRecord::Schema.define(version: 20151030093550) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 20151020104046) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.string   "wechat_id",             limit: 255
+    t.string   "customer_id",           limit: 255
     t.string   "pay_serial_number",     limit: 255
     t.string   "prepay_id",             limit: 255
     t.datetime "pre_pay_id_expired_at"

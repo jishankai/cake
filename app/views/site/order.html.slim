@@ -15,7 +15,7 @@
         .row.row-fluid
           b 日期：
           = Time.at order.created_at
-       .row.row-fluid
+        .row.row-fluid
           b 支付状态：
           span#is_paid = order.is_paid ? '已支付':'未支付'
         .row.row-fluid
@@ -23,6 +23,7 @@
           span#is_deliveried = order.is_deliveried ? '已配送':'未配送'
         .row.row-fluid
           hr.divider
+  br
   nav.navbar.navbar-default.navbar-fixed-bottom[style='background:white']
     center
       .col-xs-offset-4.col-xs-4
