@@ -3,7 +3,7 @@
     .product[id=product.id]
       .row.row-fluid
         center
-          image_tag(product.attachments.first.name)
+          = image_tag(product.attachments.first.name)
           / #carousel-generic.carousel.slide[data-ride="carousel"]
           /   ol.carousel-indicators
           /     li.active[data-target="#carousel-generic" data-slide-to="0"]
