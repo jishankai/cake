@@ -3,23 +3,23 @@
     .product[id=product.id]
       .row.row-fluid
         center
-          = image_tag(product.attachments.first.name)
-          / #carousel-generic.carousel.slide[data-ride="carousel"]
-          /   ol.carousel-indicators
-          /     li.active[data-target="#carousel-generic" data-slide-to="0"]
-          /     li[data-target="#carousel-generic" data-slide-to="1"]
-          /     li[data-target="#carousel-generic" data-slide-to="2"]
-          /   .carousel-inner[role="listbox"]
-          /     - if (product.attachments.count!=0)
-          /       - product.attachments.each_with_index do |attachment, index|
-          /         - if (index==0)
-          /           .item.active
-          /             = image_tag(attachment.name)
-          /             .carousel-caption
-          /         - else
-          /           .item
-          /             = image_tag(attachment.name)
-          /             .carousel-caption
+          / = image_tag(product.attachments.first.name)
+          #carousel-generic.carousel.slide[data-ride="carousel"]
+            ol.carousel-indicators
+              li.active[data-target="#carousel-generic" data-slide-to="0"]
+              li[data-target="#carousel-generic" data-slide-to="1"]
+              li[data-target="#carousel-generic" data-slide-to="2"]
+            .carousel-inner[role="listbox"]
+              - if (product.attachments.count!=0)
+                - product.attachments.each_with_index do |attachment, index|
+                  - if (index==0)
+                    .item.active
+                      = image_tag(attachment.name)
+                      .carousel-caption
+                  - else
+                    .item
+                      = image_tag(attachment.name)
+                      .carousel-caption
           /   a.left.carousel-control[href="#carousel-generic" role="button" data-slide="prev"]
           /     span.glyphicon.glyphicon-chevron-left[aria-hidden="true"]
           /     span.sr-only
