@@ -16,12 +16,12 @@ class PayNotifiesController < ActionController::Base
       }
       order.save(validate: false)
       # 支付成功后，减库存
-      order_hash = ActiveSupport::JSON.decode(order.context)
-      order_hash.each do |key, value|
-        product = Product.find(key)
-        product.inventory-=value.to_i
-        product.save
-      end
+      # order_hash = ActiveSupport::JSON.decode(order.context)
+      # order_hash.each do |key, value|
+      #   product = Product.find(key)
+      #   product.inventory-=value.to_i
+      #   product.save
+      # end
 
       Rails.logger.debug("支付成功后，减库存")
       render xml: {
