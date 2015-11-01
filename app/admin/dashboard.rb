@@ -10,7 +10,7 @@ ActiveAdmin.register_page "Dashboard" do
           table_for Order.order('id desc').limit(10) do
             column("支付")  {|order| status_tag(order.is_paid)}
             column("配送")  {|order| status_tag(order.is_deliveried)}
-            column("微信")  {|order| link_to(order.wechat_id, admin_order_path(order)) }
+            column("姓名")  {|order| link_to(order.customer.name, admin_order_path(order)) }
             column("总价")  {|order| number_to_currency order.fee}
           end
         end
