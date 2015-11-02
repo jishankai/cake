@@ -25,7 +25,7 @@
               span#is_deliveried = order.is_deliveried ? '已配送':'未配送'
           .col-xs-2
             br
-            a[href="/orders/view?id=#{order.id}" role="button"]
+            a[href="/orders/view/#{order.id}" role="button"]
               i.fa.fa-chevron-right.fa-4x
         .row.row-fluid
           hr.divider

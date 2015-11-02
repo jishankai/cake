@@ -5,8 +5,8 @@ Rails.application.routes.draw do
   match 'index' => 'site#index', via: [:get, :post]
   match '/orders/create' => 'orders#create', via: [:get, :post]
   get 'order' => 'orders#index'
-  get '/orders/view' => 'orders#view'
-  get '/orders/del' => 'orders#del'
+  get '/orders/view/:id' => 'orders#view'
+  get '/orders/del/:id' => 'orders#del'
   get '/auth/wechat/callback', :to => 'site#index'
   resource :pay_notify, only: [] do
     collection do

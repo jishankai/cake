@@ -29,10 +29,15 @@
     center
       .btn-toolbar[role='toolbar']
         .col-xs-offset-2.col-xs-4
+          - if @order.is_paid
+          a.to_pay.btn.btn-success.btn-block.navbar-btn[href="#"]
+            | 已支付
+          - else
           a.to_pay.btn.btn-success.btn-block.navbar-btn[href="javascript:;"]
             | 立即支付
+          - end
         .col-xs-4
-          a.btn.btn-danger.btn-block.navbar-btn[href="/orders/del?&id=#{@order.id}" role="button"]
+          a.btn.btn-danger.btn-block.navbar-btn[href="/orders/del/#{@order.id}" role="button"]
             | 删除订单
 
 = javascript_include_tag '//res.wx.qq.com/open/js/jweixin-1.0.0.js'
