@@ -20,19 +20,4 @@ class SiteController < ApplicationController
     @products = Product.all
   end
 
-  def order
-    @uid = session[:uid]
-
-    @orders = Order.joins(:customer).where( :customers => {:wechat_id=>@uid} )
-    @orders.each do |value|
-      #byebug
-      @context_hash = ActiveSupport::JSON.decode(value.context);
-      value.context = '';
-      @context_hash.each do |k, v|
-        product = Product.find(k)
-        value.context+=product.name+'x'+v+' '
-      end
-    end
-  end
-
 end

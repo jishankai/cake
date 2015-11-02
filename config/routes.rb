@@ -3,8 +3,10 @@ Rails.application.routes.draw do
   devise_for :users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   match 'index' => 'site#index', via: [:get, :post]
-  match '/orders/show' => 'orders#show', via: [:get, :post]
-  get 'order' => 'site#order'
+  match '/orders/create' => 'orders#create', via: [:get, :post]
+  get 'order' => 'orders#index'
+  get '/orders/view' => 'orders#view'
+  get '/orders/del' => 'orders#del'
   get '/auth/wechat/callback', :to => 'site#index'
   resource :pay_notify, only: [] do
     collection do

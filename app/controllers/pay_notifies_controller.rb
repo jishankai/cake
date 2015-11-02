@@ -7,7 +7,6 @@ class PayNotifiesController < ActionController::Base
     if WxPay::Sign.verify?(result)
       pay_serial_number = result["out_trade_no"]
       order = Order.find_by(pay_serial_number: pay_serial_number)
-      order.fee = result["total_fee"]
       order.is_paid = 1
       order.pay_logs = {
         pay_type: "weixin",

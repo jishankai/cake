@@ -1,0 +1,98 @@
+.container#main-container
+  .row.row-fluid
+    center
+      h4 支付订单
+    hr.devider
+  .row.row-fluid
+    .order[id=@order.id]
+      .row.row-fluid
+        b 内容：
+        span#context = @context
+      .row.row-fluid
+        b 价格：
+        = @order.fee
+      .row.row-fluid
+        b 日期：
+        = Time.at @order.created_at
+      .row.row-fluid
+        b 姓名：
+        = @order.customer.name
+      .row.row-fluid
+        b 地址：
+        = @order.customer.home_address
+      .row.row-fluid
+        b 电话：
+        = @order.customer.mobile
+      .row.row-fluid
+        hr.divider
+  nav.navbar.navbar-default.navbar-fixed-bottom[style='background:white']
+    center
+      .btn-toolbar[role='toolbar']
+        .col-xs-offset-2.col-xs-4
+          a.to_pay.btn.btn-success.btn-block.navbar-btn[href="javascript:;"]
+            | 立即支付
+        .col-xs-4
+          a.btn.btn-danger.btn-block.navbar-btn[href="/orders/del?&id=#{@order.id}" role="button"]
+            | 删除订单
+
+= javascript_include_tag '//res.wx.qq.com/open/js/jweixin-1.0.0.js'
+- sign_package = WechatsController.wechat.jsapi_ticket.signature(request.original_url)
+javascript:
+  wx.config({
+    debug: false,
+    appId: "#{Rails.application.secrets.app_id}",
+    timestamp: "#{sign_package[:timestamp]}",
+    nonceStr: "#{sign_package[:noncestr]}",
+    signature: "#{sign_package[:signature]}",
+    jsApiList: [
+      'onMenuShareTimeline',
+      'onMenuShareAppMessage',
+      'onMenuShareQQ',
+      'onMenuShareWeibo',
+      'hideMenuItems',
+      'showMenuItems',
+      'hideAllNonBaseMenuItem',
+      'showAllNonBaseMenuItem',
+      'translateVoice',
+      'startRecord',
+      'stopRecord',
+      'onRecordEnd',
+      'playVoice',
+      'pauseVoice',
+      'stopVoice',
+      'uploadVoice',
+      'downloadVoice',
+      'chooseImage',
+      'previewImage',
+      'uploadImage',
+      'downloadImage',
+      'getNetworkType',
+      'openLocation',
+      'getLocation',
+      'hideOptionMenu',
+      'showOptionMenu',
+      'closeWindow',
+      'scanQRCode',
+      'chooseWXPay',
+      'openProductSpecificView',
+      'addCard',
+      'chooseCard',
+      'openCard'
+    ]
+  });
+
+  wx.ready(function(){
+    $(".to_pay").click(function(){
+      wx.chooseWXPay({
+        "timestamp": "#{@pay_p[:timeStamp]}",
+        "nonceStr": "#{@pay_p[:nonceStr]}",
+        "package": "#{@pay_p[:package]}",
+        "signType": "#{@pay_p[:signType]}",
+        "paySign": "#{@pay_sign}",
+        success: function (res) {
+          alert("支付成功");
+          window.location.href = "/order";
+        }
+      });
+    });
+  });

@@ -1,5 +1,20 @@
 class OrdersController < ApplicationController
-  def show
+  def index
+    @uid = session[:uid]
+
+    @orders = Order.joins(:customer).where( :customers => {:wechat_id=>@uid} )
+    @orders.each do |value|
+      #byebug
+      @context_hash = ActiveSupport::JSON.decode(value.context);
+      value.context = '';
+      @context_hash.each do |k, v|
+        product = Product.find(k)
+        value.context+=product.name+'x'+v+' '
+      end
+    end
+  end
+
+  def create
     @uid = session[:uid]
 
     @customer = Customer.find_by! wechat_id: @uid
@@ -42,5 +57,33 @@ class OrdersController < ApplicationController
       signType: "MD5"
     }
     @pay_sign = WxPay::Sign.generate(@pay_p)
+  end
+
+  def view
+    id = params[:id]
+    @order = Order.includes(:customer).find(id)
+
+    @context_hash = ActiveSupport::JSON.decode(@order.context);
+    @context = '';
+    @context_hash.each do |k, v|
+      product = Product.find(k)
+      @context+=product.name+'x'+v+' '
+    end
+
+    @pay_p = {
+      appId: Rails.application.secrets.app_id,
+      timeStamp: Time.now.to_i.to_s,
+      nonceStr: SecureRandom.hex,
+      package: "prepay_id=#{@order.get_prepay_id(remote_ip: request.ip)}",
+      signType: "MD5"
+    }
+    @pay_sign = WxPay::Sign.generate(@pay_p)
+  end
+
+  def del
+    id = params[:id]
+    Order.delete(id)
+
+    redirect_to '/order'
   end
 end
