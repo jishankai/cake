@@ -18,6 +18,9 @@
               b 日期：
               = Time.at order.created_at
             .row.row-fluid
+              b 配送时间：
+              = order.delivery_time
+            .row.row-fluid
               b 支付状态：
               span#is_paid = order.is_paid ? '已支付':'未支付'
             .row.row-fluid
