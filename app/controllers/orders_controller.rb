@@ -36,6 +36,7 @@ class OrdersController < ApplicationController
       @order = @customer.orders.build()
       @order.context = params[:order]
       @order.fee = params[:total]
+      @order.delivery_time = "#{params[:delivery_date]} #{params[:delivery_time]}"
       @order.remark = params[:remark]
       @order.is_paid = 0
       @order.is_deliveried = 0

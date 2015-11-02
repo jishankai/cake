@@ -44,6 +44,7 @@ gem 'wx_pay'
 # Bootstrap
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'autoprefixer-rails'
+gem 'bootstrap-datepicker-rails'
 
 # HTML&CSS
 gem 'slim-rails'

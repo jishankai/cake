@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151030093550) do
+ActiveRecord::Schema.define(version: 20151102125842) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 20151030093550) do
     t.datetime "pre_pay_id_expired_at"
     t.text     "context",               limit: 65535
     t.float    "fee",                   limit: 24
+    t.string   "delivery_time",         limit: 255
     t.text     "remark",                limit: 65535
     t.boolean  "is_paid"
     t.text     "pay_logs",              limit: 65535

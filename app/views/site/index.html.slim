@@ -142,6 +142,18 @@
                         .col-xs-12
                           .form-group 
                             textarea.form-control#address[name='address'  placeholder='收货地址' required] = @customer.home_address
+                      .row
+                        .col-xs-12
+                          .form-inline.form-group
+                            .input-group.date
+                              input.form-control#delivery_date[name='delivery_date' type='text' data-provide='datepicker' data-date-start-date="+1d" required]
+                              .input-group-addon
+                                span.glyphicon.glyphicon-th
+                            select.form-control#delivery_time[name='delivery_time']
+                              option = '09:00-12:00'
+                              option = '12:00-15:00'
+                              option = '15:00-18:00'
+                            span[for='delivery_date'] = "：配送时间"
                       / .row
                       /   .col-xs-12
                       /     .form-group

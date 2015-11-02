@@ -12,6 +12,7 @@ ActiveAdmin.register_page "Dashboard" do
             column("支付")  {|order| status_tag(order.is_paid)}
             column("配送")  {|order| status_tag(order.is_deliveried)}
             column("总价")  {|order| number_to_currency order.fee}
+            column("配送时间") {|order| order.delivery_time}
           end
         end
       end
