@@ -15,6 +15,9 @@
         b 日期：
         = Time.at @order.created_at
       .row.row-fluid
+        b 配送时间：
+        = @order.delivery_time
+      .row.row-fluid
         b 姓名：
         = @order.customer.name
       .row.row-fluid
