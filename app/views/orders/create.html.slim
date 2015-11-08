@@ -81,18 +81,16 @@ javascript:
     ]
   });
 
-  wx.ready(function(){
-    $(".to_pay").click(function(){
-      wx.chooseWXPay({
-        "timestamp": "#{@pay_p[:timeStamp]}",
-        "nonceStr": "#{@pay_p[:nonceStr]}",
-        "package": "#{@pay_p[:package]}",
-        "signType": "#{@pay_p[:signType]}",
-        "paySign": "#{@pay_sign}",
-        success: function (res) {
-          alert("成功");
-          window.location.href = "/order";
-        }
-      });
+  $(".to_pay").click(function(){
+    wx.chooseWXPay({
+      "timestamp": "#{@pay_p[:timeStamp]}",
+      "nonceStr": "#{@pay_p[:nonceStr]}",
+      "package": "#{@pay_p[:package]}",
+      "signType": "#{@pay_p[:signType]}",
+      "paySign": "#{@pay_sign}",
+      success: function (res) {
+        alert("成功");
+        window.location.href = "/order";
+      }
     });
   });
