@@ -28,6 +28,7 @@ ActiveAdmin.register Order do
       end
       order.context
     end
+    column :customer
     column :fee
     column :remark
     column :is_paid
