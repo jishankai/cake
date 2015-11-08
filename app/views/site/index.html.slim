@@ -135,19 +135,23 @@
                         .col-xs-5
                           .form-group 
                             input.form-control#name[name='name'  placeholder='姓名' type='text' value=@customer.name required]
+                            .help-block.with-errors
                         .col-xs-7
                           .form-group 
                             input.form-control#mobile[name='mobile'  placeholder='手机' type='text' value=@customer.mobile required]
+                            .help-block.with-errors
                       .row
                         .col-xs-12
                           .form-group 
                             textarea.form-control#address[name='address'  placeholder='收货地址' required] = @customer.home_address
+                            .help-block.with-errors
                       .row
                         .col-xs-12
                           .form-inline.form-group
                             span[for='delivery_date'] = "配送时间"
                             .input-group.date
                               input.form-control#delivery_date[name='delivery_date' data-provide='datepicker' data-date-start-date="+1d" readonly="readonly" required]
+                              .help-block.with-errors
                               .input-group-addon
                                 span.glyphicon.glyphicon-th
                             select.form-control#delivery_time[name='delivery_time']
