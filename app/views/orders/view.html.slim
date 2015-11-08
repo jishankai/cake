@@ -36,7 +36,7 @@
             a.to_pay.btn.btn-success.btn-block.navbar-btn[href="#"]
               | 已支付
           - else
-            a.to_pay.btn.btn-success.btn-block.navbar-btn[href="javascript:;"]
+            button.to_pay.btn.btn-success.btn-block.navbar-btn
               | 立即支付
         .col-xs-4
           a.btn.btn-danger.btn-block.navbar-btn[href="/orders/del/#{@order.id}" role="button"]
@@ -88,18 +88,16 @@ javascript:
     ]
   });
 
-  wx.ready(function(){
-    $(".to_pay").click(function(){
-      wx.chooseWXPay({
-        "timestamp": "#{@pay_p[:timeStamp]}",
-        "nonceStr": "#{@pay_p[:nonceStr]}",
-        "package": "#{@pay_p[:package]}",
-        "signType": "#{@pay_p[:signType]}",
-        "paySign": "#{@pay_sign}",
-        success: function (res) {
-          alert("支付成功");
-          window.location.href = "/order";
-        }
-      });
+  $(".to_pay").click(function(){
+    wx.chooseWXPay({
+      "timestamp": "#{@pay_p[:timeStamp]}",
+      "nonceStr": "#{@pay_p[:nonceStr]}",
+      "package": "#{@pay_p[:package]}",
+      "signType": "#{@pay_p[:signType]}",
+      "paySign": "#{@pay_sign}",
+      success: function (res) {
+        alert("支付成功");
+        window.location.href = "/order";
+      }
     });
   });
