@@ -23,9 +23,6 @@
             .row.row-fluid
               b 支付状态：
               span#is_paid = order.is_paid ? '已支付':'未支付'
-            .row.row-fluid
-              b 配送状态：
-              span#is_deliveried = order.is_deliveried ? '已配送':'未配送'
           .col-xs-2
             br
             form[action="/orders/view" method="post"]
