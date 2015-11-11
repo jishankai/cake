@@ -99,7 +99,17 @@ javascript:
         success: function (res) {
           alert("支付成功");
             window.location.href = "/order";
+        },
+        cancel: function (res) {
+          alert('已取消');
+        },
+        fail: function (res) {
+          alert(JSON.stringify(res));
         }
       });
     });
+  });
+
+  wx.error(function (res) {
+    alert('wx.error: '+JSON.stringify(res));
   });
