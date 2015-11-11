@@ -36,7 +36,7 @@
             a.to_pay.btn.btn-success.btn-block.navbar-btn[href="#"]
               | 已支付
           - else
-            button.to_pay.btn.btn-success.btn-block.navbar-btn
+            button.to_pay.btn.btn-success.btn-block.navbar-btn[onclick="setTimeout('wPay()', 1000)"]
               | 立即支付
         .col-xs-4
           a.btn.btn-danger.btn-block.navbar-btn[href="/orders/del/#{@order.id}" role="button"]
@@ -88,7 +88,7 @@ javascript:
     ]
   });
 
-  $("button.to_pay").click(function(){
+  function wPay() {
     wx.chooseWXPay({
       "timestamp": "#{@pay_p[:timeStamp]}",
       "nonceStr": "#{@pay_p[:nonceStr]}",
