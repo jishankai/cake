@@ -32,7 +32,7 @@
     center
       .col-xs-offset-4.col-xs-4
         .btn-toolbar[role='toolbar']
-          button.to_pay.btn.btn-success.btn-block.navbar-btn
+          button.to_pay.btn.btn-success.btn-block.navbar-btn[onclick="setTimeout('wPay()', 500)"]
             | 立即支付
 
 = javascript_include_tag '//res.wx.qq.com/open/js/jweixin-1.0.0.js'
@@ -81,7 +81,7 @@ javascript:
     ]
   });
 
-  $(".to_pay").click(function(){
+  function wPay() {
     wx.chooseWXPay({
       "timestamp": "#{@pay_p[:timeStamp]}",
       "nonceStr": "#{@pay_p[:nonceStr]}",
@@ -89,9 +89,9 @@ javascript:
       "signType": "#{@pay_p[:signType]}",
       "paySign": "#{@pay_sign}",
       success: function (res) {
-        alert("成功");
+        alert("支付成功");
         window.location.href = "/order";
-      }
+      },
       cancel: function (res) {
         alert('已取消');
       },
@@ -99,7 +99,7 @@ javascript:
         alert(JSON.stringify(res));
       }
     });
-  });
+  }
 
   wx.error(function (res) {
     alert('wx.error: '+JSON.stringify(res));
