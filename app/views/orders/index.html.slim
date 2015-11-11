@@ -28,8 +28,10 @@
               span#is_deliveried = order.is_deliveried ? '已配送':'未配送'
           .col-xs-2
             br
-            a[href="/orders/view/#{order.id}" role="button"]
-              i.fa.fa-chevron-right.fa-4x
+            form[action="/orders/view" method="post"]
+              = hidden_field_tag :authenticity_token, form_authenticity_token
+              button[type="submit" name="id" value="#{order.id}"]
+                i.fa.fa-chevron-right.fa-4x
         .row.row-fluid
           hr.divider
   br
