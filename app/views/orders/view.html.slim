@@ -88,40 +88,26 @@ javascript:
     ]
   });
 
+  function wPay() {
+    wx.chooseWXPay({
+      "timestamp": "#{@pay_p[:timeStamp]}",
+      "nonceStr": "#{@pay_p[:nonceStr]}",
+      "package": "#{@pay_p[:package]}",
+      "signType": "#{@pay_p[:signType]}",
+      "paySign": "#{@pay_sign}",
+      success: function (res) {
+        alert("支付成功");
+        window.location.href = "/order";
+      },
+      cancel: function (res) {
+        alert('已取消');
+      },
+      fail: function (res) {
+        alert(JSON.stringify(res));
+      }
+    });
+  }
+
   wx.error(function (res) {
     alert('wx.error: '+JSON.stringify(res));
   });
-
-  function onBridgeReady(){
-    WeixinJSBridge.invoke(
-      'getBrandWCPayRequest', {
-        "appId": "#{@pay_p[:appId]}",     //公众号名称，由商户传入
-        "timestamp": "#{@pay_p[:timeStamp]}",
-        "nonceStr": "#{@pay_p[:nonceStr]}",
-        "package": "#{@pay_p[:package]}",
-        "signType": "#{@pay_p[:signType]}",
-        "paySign": "#{@pay_sign}",
-      },
-      function(res){
-        if(res.err_msg == "get_brand_wcpay_request：ok" ) {
-          alert("支付成功");
-          window.location.href = "/order";
-        } else {
-          alert(res.err_msg);
-        }
-      }
-    );
-  }
-
-  function wPay() {
-    if (typeof WeixinJSBridge == "undefined"){
-      if( document.addEventListener ){
-        document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
-      }else if (document.attachEvent){
-        document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
-        document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
-      }
-    }else{
-      onBridgeReady();
-    }
-  }
