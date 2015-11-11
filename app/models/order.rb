@@ -22,7 +22,7 @@ class Order < ActiveRecord::Base
     res = WxPay::Service.invoke_unifiedorder(unifiedorder)
     if res.success?
       self.prepay_id = res["prepay_id"]
-      self.pre_pay_id_expired_at = Time.current + 2.hours
+      self.pre_pay_id_expired_at = Time.current# + 2.hours
       Rails.logger.debug("set prepay_id: #{self.prepay_id}")
       self.save(validate: false)
     else
