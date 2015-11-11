@@ -1,7 +1,5 @@
 .container#main-container
   br
-  center
-    i.fa.fa-circle-o-notch.fa-spin.fa-4x#loader
   - @products.each do |product|
     .product[id=product.id]
       .row.row-fluid
@@ -195,16 +193,6 @@
                 button.btn.btn-success 提交订单
 
 javascript:
-
-  function preloaderhide() {
-    $('#loader').fadeOut(600);
-  }
-  $(window).load(function () {
-    preloaderhide();
-  });
-
-  window.setTimeout(preloaderhide,4000);
-
   $('#main-container select#amount').change(function(){
     var button_disabled = true;
     $('#main-container select#amount').each(function(){
