@@ -32,7 +32,7 @@ ActiveAdmin.register Order do
     column :fee
     column :remark
     column :is_paid
-    column :is_deliveried
+    #column :is_deliveried
     column :created_at
     actions
   end
