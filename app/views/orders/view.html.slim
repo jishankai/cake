@@ -95,7 +95,7 @@ javascript:
   function onBridgeReady(){
     WeixinJSBridge.invoke(
       'getBrandWCPayRequest', {
-        "appId" ： "#{@pay_p[:appId]}",     //公众号名称，由商户传入
+        "appId": "#{@pay_p[:appId]}",     //公众号名称，由商户传入
         "timestamp": "#{@pay_p[:timeStamp]}",
         "nonceStr": "#{@pay_p[:nonceStr]}",
         "package": "#{@pay_p[:package]}",
