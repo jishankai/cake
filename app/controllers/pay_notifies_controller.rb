@@ -22,6 +22,49 @@ class PayNotifiesController < ActionController::Base
       #   product.save
       # end
 
+      context_hash = ActiveSupport::JSON.decode(order.context);
+      context = '';
+      context_hash.each do |k, v|
+        product = Product.find(k)
+        context+=product.name+'x'+v+' '
+      end
+      template = {
+        "template_id" => "wa4_6GLlV0-BSO19I8VkggzHlRz5BrxCEbVmiH9WAKY",
+        "url" => "http://misscake.cc/admin",
+        "topcolor" => "#FF0000",
+        "data" => {
+          "first" => {
+            "value" => "有新的订单！",
+            "color" => "#0A0A0A",
+          },
+          "keyword1" => {
+            "value" => order.id,
+            "color" => "#0080FF",
+          },
+          "keyword2" => {
+            "value" => "#{order.customer.name} #{order.customer.mobile}",
+            "color" => "#0080FF",
+          },
+          "keyword3" => {
+            "value" => context,
+            "color" => "#0080FF",
+          },
+          "keyword4" => {
+            "value" => order.customer.home_address,
+            "color" => "#0080FF",
+          },
+          "keyword5" => {
+            "value" => order.delivery_time,
+            "color" => "#0080FF",
+          },
+          "remark" => {
+            "value" => order.remark,
+            "color" => "#173177",
+          }
+        }
+      }
+      Wechat.api.template_message_send Wechat::Message.to('oyodiwzB9IWe_4Bss6eMswr7yPkc').template(template)
+
       Rails.logger.debug("支付成功后，减库存")
       render xml: {
                return_code: "SUCCESS"
