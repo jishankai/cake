@@ -17,7 +17,7 @@ class SiteController < ApplicationController
       @customer = Customer.create(:wechat_id => @uid, :score=>0)
     end
 
-    @products = Product.all.order(id: :asc)
+    @products = Product.all.order(updated_at: :desc)
   end
 
 end
