@@ -49,7 +49,6 @@ ActiveAdmin.register Product do
     f.inputs do
       f.input :name
       f.input :price
-      f.input :thumb
       f.input :taste
       f.input :crafts
       f.input :efficacy
