@@ -63,7 +63,7 @@ class PayNotifiesController < ActionController::Base
           }
         }
       }
-      Wechat.api.template_message_send Wechat::Message.to('oyodiw9YKzQhS4geSOSSa_JGc4pA').template(template)
+      Wechat.api.template_message_send Wechat::Message.to('oyodiw-cuZDHH5wo08dVdmB4zDNo').template(template)
 
       Rails.logger.debug("支付成功后，减库存")
       render xml: {
